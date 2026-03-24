@@ -1,0 +1,17 @@
+.app-shell {
+  min-height: 100vh;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.app-main {
+  max-width: 87.5rem; /* 1400px */
+  margin: 0 auto;
+  padding: 0; /* Let page components handle their own padding */
+}
+
+@media (max-width: 48rem) { /* 768px */
+  .app-main {
+    width: 100%;
+  }
+}

@@ -1,0 +1,124 @@
+.players-page {
+  max-width: 87.5rem; /* 1400px */
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  min-height: 100vh;
+}
+
+.players-page__header {
+  text-align: left;
+  position: relative;
+}
+
+.players-page__header h1 {
+  font-family: var(--font-base);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.players-page__header p {
+  color: var(--text-sub);
+  font-size: 1.1rem;
+  max-width: 600px;
+}
+
+.players-page__layout {
+  display: grid;
+  grid-template-columns: minmax(17.5rem, 20%) 1fr; /* scaling sidebar natively */
+  gap: 3rem;
+  align-items: start;
+}
+
+.players-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.players-page__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+}
+
+/* Make SearchBar full width in controls */
+.players-page__controls > :first-child {
+  flex: 1;
+  min-width: 18.75rem; /* 300px */
+}
+
+.players-page__count {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.players-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17.5rem, 1fr));
+  gap: 1.5rem;
+}
+
+.players-page__empty {
+  padding: 100px 20px;
+  text-align: center;
+  background: var(--bg-surface);
+  border: 2px dashed var(--border-light);
+  border-radius: var(--radius-lg);
+  color: var(--text-sub);
+  font-size: 1.1rem;
+}
+
+.players-page__error {
+  background: rgba(244, 63, 94, 0.1);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+}
+
+.players-page__warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 64rem) { /* 1024px */
+  .players-page__layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .players-page {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 48rem) { /* 768px */
+  .players-page__controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .players-page__controls > :first-child {
+    min-width: 0;
+  }
+}

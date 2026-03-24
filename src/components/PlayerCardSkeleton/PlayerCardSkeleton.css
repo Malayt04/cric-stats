@@ -1,0 +1,62 @@
+.player-card-skeleton {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  animation: skeleton-pulse 1.5s infinite ease-in-out;
+}
+
+.player-card-skeleton__avatar {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  background: var(--bg-surface-soft);
+}
+
+.player-card-skeleton__name {
+  width: 60%;
+  height: 1.6rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-soft);
+}
+
+.player-card-skeleton__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  background: transparent;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.player-card-skeleton__meta {
+  width: 80%;
+  height: 1.05rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-soft);
+}
+
+.player-card-skeleton__meta:last-child {
+  width: 60%;
+}
+
+.player-card-skeleton__role {
+  width: 50%;
+  height: 1.8rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-soft);
+  margin-top: 0.5rem;
+}
+
+@keyframes skeleton-pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0.4; }
+}

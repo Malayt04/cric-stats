@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/sportmonks/api/(.*)",
+      "dest": "https://cricket.sportmonks.com/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

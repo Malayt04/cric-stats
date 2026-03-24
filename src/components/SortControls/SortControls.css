@@ -1,0 +1,39 @@
+.sort-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end; /* Aligns to bottom of SearchBar */
+  gap: 1rem;
+}
+
+.sort-controls__field {
+  min-width: 13.125rem; /* 210px */
+}
+
+.sort-controls__direction {
+  display: inline-flex;
+  border: 1px solid var(--border-strong); /* Fixed bad variable */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 3.125rem; /* ~50px to match standard input height */
+}
+
+.sort-controls__direction button {
+  border: none;
+  background: var(--bg-surface);
+  padding: 0 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-sub);
+  transition: var(--transition-smooth);
+}
+
+.sort-controls__direction button:hover {
+  background: var(--bg-surface-soft);
+}
+
+.sort-controls__direction .is-active {
+  background: var(--primary);
+  color: var(--bg-main);
+  font-weight: 700;
+}
