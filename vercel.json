@@ -1,12 +1,12 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/sportmonks/api/(.*)",
-      "dest": "https://cricket.sportmonks.com/api/$1"
+      "source": "/sportmonks/api/(.*)",
+      "destination": "https://cricket.sportmonks.com/api/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
