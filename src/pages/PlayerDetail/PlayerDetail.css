@@ -99,7 +99,7 @@
 
 .player-detail__formats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); /* 300px */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.75rem), 1fr));
   gap: 2rem;
 }
 
@@ -183,5 +183,9 @@
   
   .format-block__grid {
     grid-template-columns: 1fr;
+  }
+  
+  .player-detail__section {
+    padding: 1.5rem; /* Reduce aggressive padding on mobile to save horizontal space */
   }
 }
