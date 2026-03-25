@@ -2,10 +2,10 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: var(--glass-bg);
+  background: rgba(11, 14, 20, 0.85); /* Obsidian with 85% opacity */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--border-light);
   transition: var(--transition-smooth);
 }
 
