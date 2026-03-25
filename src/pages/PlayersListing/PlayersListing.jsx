@@ -145,19 +145,7 @@ function PlayersListing() {
       cacheKey: CACHE_KEYS.CAREER,
     })
 
-    worker.onmessage = ({ data }) => {
-      if (data.status === 'SUCCESS') {
-        // eslint-disable-next-line no-console
-        console.info('✅ Career data pre-fetched & cached by Web Worker.')
-      } else if (data.status === 'SKIPPED') {
-        // eslint-disable-next-line no-console
-        console.info('⚡ Worker: IndexedDB cache is fresh — skipped fetch.')
-      } else if (data.status === 'ERROR') {
-        // eslint-disable-next-line no-console
-        console.warn('⚠️ Career preload worker error:', data.message)
-      }
-    }
-
+    // Note: The worker handles all cache interactions directly in the background.
     return () => worker.terminate()
   }, [])
 
