@@ -23,8 +23,20 @@
  */
 export const normalizeCareerType = (type) => {
   const t = String(type || '').toUpperCase()
-  if (t.includes('T20'))  return 'T20'
+  
+  if (t.includes('100-BALL')) return '100-Ball'
+  if (t.includes('LIST A')) return 'List A'
+  // Strict precedence: Check 'Youth ODI' before 'ODI'
+  if (t.includes('YOUTH ODI')) return 'Youth ODI'
+  
+  if (t === 'ODI' || t.includes(' ODI') || t.startsWith('ODI')) return 'ODI'
+  if (t.includes('T10')) return 'T10'
+  
+  // Strict precedence: Check 'T20I' before general 'T20'
+  if (t.includes('T20I')) return 'T20I'
+  if (t.includes('T20')) return 'T20'
+  
   if (t.includes('TEST')) return 'Test'
-  if (t === 'ODI')        return 'ODI'
+  
   return null
 }

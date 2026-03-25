@@ -115,43 +115,43 @@ const slugToTitle = (slug) =>
  * @returns {{ ODI, T20, Test }} Aggregated career stats per format.
  */
 const aggregateCareer = (careerRecords = []) => {
-  const buckets = {
-    ODI:  { matches: 0, runs: 0, wickets: 0 },
-    T20:  { matches: 0, runs: 0, wickets: 0 },
-    TEST: { matches: 0, runs: 0, wickets: 0 },
-  }
+  const buckets = {}
 
   for (const record of careerRecords) {
     const type = normalizeCareerType(record?.type)
-    const key = type === 'Test' ? 'TEST' : type
-    if (!key || !buckets[key]) continue
+    if (!type) continue
+
+    if (!buckets[type]) {
+      buckets[type] = { matches: 0, runs: 0, wickets: 0 }
+    }
 
     const batting = record?.batting || {}
     const bowling = record?.bowling || {}
 
-    buckets[key].matches += Number(batting.matches ?? bowling.matches ?? 0) || 0
-    buckets[key].runs    += Number(batting.runs_scored ?? 0) || 0
-    buckets[key].wickets += Number(bowling.wickets ?? 0) || 0
+    // Only count instances where matches/stats physically exist
+    buckets[type].matches += Number(batting.matches ?? bowling.matches ?? 0) || 0
+    buckets[type].runs    += Number(batting.runs_scored ?? 0) || 0
+    buckets[type].wickets += Number(bowling.wickets ?? 0) || 0
   }
 
-  const summarize = ({ matches, runs, wickets }) =>
-    matches === 0
-      ? { matches: '-', runs: '-', wickets: '-', average: '-' }
-      : { matches, runs, wickets, average: Number((runs / matches).toFixed(2)) }
+  const result = {}
+  Object.keys(buckets).forEach((format) => {
+    const { matches, runs, wickets } = buckets[format]
+    if (matches > 0) {
+      result[format] = {
+        matches,
+        runs,
+        wickets,
+        average: Number((runs / matches).toFixed(2))
+      }
+    }
+  })
 
-  return {
-    ODI:  summarize(buckets.ODI),
-    T20:  summarize(buckets.T20),
-    Test: summarize(buckets.TEST),
-  }
+  return result
 }
 
 /** Empty career placeholder used for the player listing (career not fetched here). */
-const EMPTY_CAREER = {
-  ODI:  { matches: '-', runs: '-', wickets: '-', average: '-' },
-  T20:  { matches: '-', runs: '-', wickets: '-', average: '-' },
-  Test: { matches: '-', runs: '-', wickets: '-', average: '-' },
-}
+const EMPTY_CAREER = {}
 
 /** Normalizes a raw Sportmonks player object into our app's data shape. */
 const normalizePlayer = (p, countryMap, career) => ({

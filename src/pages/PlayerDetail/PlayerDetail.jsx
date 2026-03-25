@@ -5,8 +5,6 @@ import Loader from '../../components/Loader/Loader'
 import { fetchPlayerById } from '../../services/sportmonks'
 import './PlayerDetail.css'
 
-const formatOrder = ['ODI', 'T20', 'Test']
-
 function StatCard({ label, value }) {
   return (
     <article className="stat-card">
@@ -105,19 +103,25 @@ function PlayerDetail() {
 
       <section className="player-detail__section">
         <h2>Career Stats</h2>
-        <div className="player-detail__formats">
-          {formatOrder.map((format) => (
-            <article key={format} className="format-block">
-              <h3>{format}</h3>
-              <div className="format-block__grid">
-                <StatCard label="Matches" value={player.career?.[format]?.matches ?? '-'} />
-                <StatCard label="Runs" value={player.career?.[format]?.runs ?? '-'} />
-                <StatCard label="Wickets" value={player.career?.[format]?.wickets ?? '-'} />
-                <StatCard label="Average" value={player.career?.[format]?.average ?? '-'} />
-              </div>
-            </article>
-          ))}
-        </div>
+        {Object.keys(player.career || {}).length > 0 ? (
+          <div className="player-detail__formats">
+            {Object.keys(player.career || {}).sort().map((format) => (
+              <article key={format} className="format-block">
+                <h3>{format}</h3>
+                <div className="format-block__grid">
+                  <StatCard label="Matches" value={player.career[format].matches} />
+                  <StatCard label="Runs" value={player.career[format].runs} />
+                  <StatCard label="Wickets" value={player.career[format].wickets} />
+                  <StatCard label="Average" value={player.career[format].average} />
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p style={{ color: 'var(--text-sub)', fontSize: '1.1rem' }}>
+            No career matches recorded.
+          </p>
+        )}
       </section>
 
       <section className="player-detail__section">

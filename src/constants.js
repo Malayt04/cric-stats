@@ -11,7 +11,7 @@
 export const CACHE_KEYS = {
   PLAYERS:  'players_list_v1',
   COUNTRIES: 'country_map_v1',
-  CAREER:   'career_tournament_map_v2',
+  CAREER:   'career_tournament_map_v4',
 }
 
 // ─── Cache TTLs (ms) ───────────────────────────────────────────────────────────
@@ -27,8 +27,13 @@ export const PAGE_SIZE = 12
 // ─── API ───────────────────────────────────────────────────────────────────────
 export const REQUEST_TIMEOUT_MS = 60_000
 
-// ─── Tournament filter options ─────────────────────────────────────────────────
-// These are the three canonical buckets shown in the UI filter dropdown.
-// Sportmonks returns many variations (T20I, Test/5day, etc.) which are
-// consolidated into these three labels during data normalization.
-export const TOURNAMENT_TYPES = ['Test', 'ODI', 'T20']
+export const TOURNAMENT_TYPES = [
+  '100-Ball',
+  'List A',
+  'ODI',
+  'T10',
+  'T20',
+  'T20I',
+  'Test',
+  'Youth ODI',
+]
